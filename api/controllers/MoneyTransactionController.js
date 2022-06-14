@@ -12,6 +12,16 @@ class MoneyTransactionController {
         }
     }
 
+    static async create(req, res) {
+        const novaPessoa = req.body
+        try {
+            const novaPessoaCriada = await MoneyTransaction.create(novaPessoa)
+            return res.status(200).json(novaPessoaCriada)
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+
+    }
 }
 
 module.exports = MoneyTransactionController;
