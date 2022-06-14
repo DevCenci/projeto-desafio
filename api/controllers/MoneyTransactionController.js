@@ -22,6 +22,15 @@ class MoneyTransactionController {
         }
 
     }
+    static async buscaId(req, res) {
+        const { id } = req.params
+        try {
+            const pessoaId = await MoneyTransaction.findOne({ where: { id: Number(id) } })
+            return res.status(200).json(pessoaId)
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    }
 }
 
 module.exports = MoneyTransactionController;
