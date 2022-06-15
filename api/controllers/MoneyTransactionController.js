@@ -48,6 +48,16 @@ class MoneyTransactionController {
     })
         res.status(200).json({'status':true, 'id':req.params.id})
     };
+
+    static async delete(req, res){
+        const deletePessoa = await MoneyTransaction.destroy({
+            where:{
+                id: req.params.id
+            }
+        });
+        return res.status(200).json(deletePessoa);
+    }
+
 }
 
 module.exports = MoneyTransactionController;
