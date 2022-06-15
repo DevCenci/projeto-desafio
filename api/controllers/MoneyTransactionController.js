@@ -31,6 +31,23 @@ class MoneyTransactionController {
             return res.status(500).json(error.message)
         }
     }
+    
+    static async update(req, res){
+        const {sender, sender_bank_account, receiver, receiver_bank_account, amount} = req.body;
+
+        const updatePessoa = await MoneyTransaction.update({
+          sender: sender,
+          sender_bank_account: sender_bank_account,
+          receiver: receiver,
+          receiver_bank_account: receiver_bank_account,
+          amount: amount,
+    },{
+            where:{
+                id: req.params.id
+            }    
+    })
+        res.status(200).json({'status':true, 'id':req.params.id})
+    };
 }
 
 module.exports = MoneyTransactionController;
