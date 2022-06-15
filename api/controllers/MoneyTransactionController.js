@@ -31,23 +31,35 @@ class MoneyTransactionController {
             return res.status(500).json(error.message)
         }
     }
-    
-    static async update(req, res){
-        const {sender, sender_bank_account, receiver, receiver_bank_account, amount} = req.body;
+
+    static async update(req, res) {
+        const { sender, sender_bank_account, receiver, receiver_bank_account, amount } = req.body;
 
         const updatePessoa = await MoneyTransaction.update({
-          sender: sender,
-          sender_bank_account: sender_bank_account,
-          receiver: receiver,
-          receiver_bank_account: receiver_bank_account,
-          amount: amount,
-    },{
-            where:{
+            sender: sender,
+            sender_bank_account: sender_bank_account,
+            receiver: receiver,
+            receiver_bank_account: receiver_bank_account,
+            amount: amount,
+        }, {
+            where: {
                 id: req.params.id
-            }    
-    })
-        res.status(200).json({'status':true, 'id':req.params.id})
+            }
+        })
+        res.status(200).json({ 'status': true, 'id': req.params.id })
     };
+
+    static async buscarSender(req, res) {
+        const sender = req.query.sender
+        try {
+            const pessoa = await MoneyTransaction.findAll({ where: { sender: sender } })
+            return res.status(200).json(pessoa)
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+
+
+    }
 }
 
 module.exports = MoneyTransactionController;
