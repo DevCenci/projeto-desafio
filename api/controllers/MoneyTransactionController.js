@@ -49,7 +49,6 @@ class MoneyTransactionController {
         res.status(200).json({ 'status': true, 'id': req.params.id })
     };
 
-  feature/buscarSender
     static async buscarSender(req, res) {
         const sender = req.query.sender
         try {
@@ -61,9 +60,9 @@ class MoneyTransactionController {
 
 
     }
-    static async delete(req, res){
+    static async delete(req, res) {
         const deletePessoa = await MoneyTransaction.destroy({
-            where:{
+            where: {
                 id: req.params.id
             }
         });
