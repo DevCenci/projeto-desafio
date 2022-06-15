@@ -9,7 +9,7 @@ router.get("/buscaId/:id", MoneyTransactionController.buscaId);
 router.get("/buscarSender", MoneyTransactionController.buscarSender);
 router.post("/create", MoneyTransactionController.create);
 router.put("/update/:id", MoneyTransactionController.update);
-/*router.delete("/delete/:id", MoneyTransactionController.delete);
- */
+router.delete("/delete/:id", MoneyTransactionController.delete);
+
 
 module.exports = router;
