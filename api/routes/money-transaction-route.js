@@ -7,8 +7,8 @@ const router = Router()
 router.get("/listAll", MoneyTransactionController.listAll);
 router.get("/buscaId/:id", MoneyTransactionController.buscaId);
 router.post("/create", MoneyTransactionController.create);
-router.put("/update/:id", MoneyTransactionController.update);
-/*router.delete("/delete/:id", MoneyTransactionController.delete);*/
- 
+/*router.put("/update/:id", MoneyTransactionController.update);
+router.delete("/delete/:id", MoneyTransactionController.delete);
+ */
 
 module.exports = router;
