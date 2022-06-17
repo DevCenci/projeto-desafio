@@ -3,9 +3,14 @@ const { MoneyTransaction } = require('../models');
 class MoneyTransactionController {
 
     static async listAll(req, res) {
+        const { limit = 200, offset = 400 } = req.query;
 
         try {
-            const listarTodos = await MoneyTransaction.findAll();
+
+            const listarTodos = await MoneyTransaction.findAll({
+                limit: Number(limit),
+                offset: Number(offset),
+            });
             return res.status(200).json(listarTodos)
         } catch (error) {
             return res.status(500).json(error.message)
@@ -50,9 +55,15 @@ class MoneyTransactionController {
     };
 
     static async buscarSender(req, res) {
+        const { limit = 200, offset = 400 } = req.query;
         const sender = req.query.sender
         try {
-            const pessoa = await MoneyTransaction.findAll({ where: { sender: sender } })
+            const pessoa = await MoneyTransaction.findAll(
+                {
+                    where: { sender: sender },
+                    limit: Number(limit),
+                    offset: Number(offset),
+                })
             return res.status(200).json(pessoa)
         } catch (error) {
             return res.status(500).json(error.message)
@@ -68,6 +79,6 @@ class MoneyTransactionController {
         });
         return res.status(200).json(deletePessoa);
     }
-}
 
+}
 module.exports = MoneyTransactionController;
